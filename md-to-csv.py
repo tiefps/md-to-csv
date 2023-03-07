@@ -44,26 +44,28 @@ soup = BeautifulSoup(html_doc, 'html.parser')
 logging.debug('Soup: %s', soup)
 
 
-def get_header_for_element(element: PageElement, header_name: str, default_value=''):
-    """Returns the header text for the element or default_value if not found
+def get_header_for_element(element: PageElement, header_name: str, parent_header_sourceline: int, default_value=''):
+    """Returns the header text for the element and its line number
+     or default_value and the previous header's line number
     """
     header = element.find_previous_sibling(header_name)
-    header_text = header.text if header else default_value
-    return header_text
+    if header and header.sourceline > parent_header_sourceline:
+        return header.text, header.sourceline
+    else:
+        return default_value, parent_header_sourceline
 
 
 logging.info('Converting soup to CSV')
 rows = []
 for p in soup.find_all('p'):
-    row = ParagraphRow(
-        get_header_for_element(p, 'h1'),
-        get_header_for_element(p, 'h2'),
-        get_header_for_element(p, 'h3'),
-        get_header_for_element(p, 'h4'),
-        get_header_for_element(p, 'h5'),
-        get_header_for_element(p, 'h6'),
-        p.text
-    )
+    line = 0
+    h1, line = get_header_for_element(p, 'h1', line)
+    h2, line = get_header_for_element(p, 'h2', line)
+    h3, line = get_header_for_element(p, 'h3', line)
+    h4, line = get_header_for_element(p, 'h4', line)
+    h5, line = get_header_for_element(p, 'h5', line)
+    h6, line = get_header_for_element(p, 'h6', line)
+    row = ParagraphRow(h1, h2, h3, h4, h5, h6, p.text)
     logging.debug('%s', row)
     rows.append(row)
 
