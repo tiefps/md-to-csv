@@ -1,4 +1,21 @@
 h1,h2,h3,h4,h5,h6,p
-md-to-csv,,,,,,Markdown to CSV
-md-to-csv,Example usage,,,,,"shell
+Markdown to CSV,,,,,,Converts a basic Markdown file into its CSV representation
+Markdown to CSV,Set up,Install dependencies:,,,,"shell
+pip3 install -r requirements.txt"
+Markdown to CSV,Usage,,,,,"```
+usage: md-to-csv.py [-h] [-o OUTPUT] [-v] input"
+Markdown to CSV,Usage,,,,,"positional arguments:
+  input                 markdown file to convert"
+Markdown to CSV,Usage,,,,,"options:
+  -h, --help            show this help message and exit
+  -o OUTPUT, --output OUTPUT
+                        name of output file, if unset it converts file.md to out-.csv
+  -v, --verbose         increase output verbosity
+```"
+Markdown to CSV,Usage,Minimal example,,,,Convert a Markdown file to a CSV file named out.YYYY-MM-DDTHH:MM:SS.csv:
+Markdown to CSV,Usage,Minimal example,,,,"shell
+md-to-csv.py README.md"
+Markdown to CSV,Usage,Full example,,,,Convert a Markdown file to a named CSV with verbose logging enabled:
+Markdown to CSV,Usage,Full example,,,,"shell
 md-to-csv.py README.md -o README.csv -v"
+Want to contribute?,,,,,,Submit a PR :)
