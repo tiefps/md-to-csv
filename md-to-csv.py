@@ -5,8 +5,8 @@ import sys
 from datetime import datetime
 from typing import NamedTuple
 
-import markdown
-from bs4 import BeautifulSoup, PageElement
+import pypandoc
+from bs4 import BeautifulSoup, Tag
 
 
 class ParagraphRow(NamedTuple):
@@ -30,13 +30,7 @@ log_level = logging.DEBUG if args.verbose else logging.INFO
 logging.basicConfig(stream=sys.stdout, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s', level=log_level)
 logging.debug('Running with args: %s', args)
 
-logging.info('Reading input file: %s', args.input)
-with open(args.input, 'r', encoding='utf-8') as f:
-    text = f.read()
-    logging.debug('File contents: %s', text)
-
-logging.info('Converting Markdown text to HTML')
-html_doc = markdown.markdown(text)
+html_doc = pypandoc.convert_file(args.input, 'html')
 logging.debug('Converted to: %s', html_doc)
 
 logging.info('Parsing HTML with BeautifulSoup')
@@ -44,28 +38,32 @@ soup = BeautifulSoup(html_doc, 'html.parser')
 logging.debug('Soup: %s', soup)
 
 
-def get_header_for_element(element: PageElement, header_name: str, parent_header_sourceline: int, default_value=''):
-    """Returns the header text for the element and its line number
+def get_parent_header(t: Tag, header_name: str, previous_header_line: int, default_value='') -> (str, int):
+    """Returns the header text for the tag and its line number
      or default_value and the previous header's line number
     """
-    header = element.find_previous_sibling(header_name)
-    if header and header.sourceline > parent_header_sourceline:
+    header = t.find_previous_sibling(header_name)
+    if header and header.sourceline > previous_header_line:
         return header.text, header.sourceline
     else:
-        return default_value, parent_header_sourceline
+        return default_value, previous_header_line
+
+
+def not_a_header(t: Tag) -> bool:
+    return t.name not in {'h1', 'h2', 'h3', 'h4', 'h5', 'h6'}
 
 
 logging.info('Converting soup to CSV')
 rows = []
-for p in soup.find_all('p'):
+for tag in soup.find_all(not_a_header, recursive=False):
     line = 0
-    h1, line = get_header_for_element(p, 'h1', line)
-    h2, line = get_header_for_element(p, 'h2', line)
-    h3, line = get_header_for_element(p, 'h3', line)
-    h4, line = get_header_for_element(p, 'h4', line)
-    h5, line = get_header_for_element(p, 'h5', line)
-    h6, line = get_header_for_element(p, 'h6', line)
-    row = ParagraphRow(h1, h2, h3, h4, h5, h6, p.text)
+    h1, line = get_parent_header(tag, 'h1', line)
+    h2, line = get_parent_header(tag, 'h2', line)
+    h3, line = get_parent_header(tag, 'h3', line)
+    h4, line = get_parent_header(tag, 'h4', line)
+    h5, line = get_parent_header(tag, 'h5', line)
+    h6, line = get_parent_header(tag, 'h6', line)
+    row = ParagraphRow(h1, h2, h3, h4, h5, h6, tag.text)
     logging.debug('%s', row)
     rows.append(row)
 

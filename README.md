@@ -30,7 +30,7 @@ options:
 Convert a Markdown file to a CSV file named `out.YYYY-MM-DDTHH:MM:SS.csv`:
 
 ```shell
-md-to-csv.py README.md
+python3 md-to-csv.py README.md
 ```
 
 ### Full example
@@ -38,9 +38,9 @@ md-to-csv.py README.md
 Convert a Markdown file to a named CSV with verbose logging enabled:
 
 ```shell
-md-to-csv.py README.md -o README.csv -v
+python3 md-to-csv.py README.md -o README.csv -v
 ```
 
 # Want to contribute?
 
-Submit a PR :)
+Submit a [PR](https://github.com/tiefps/md-to-csv) :)
