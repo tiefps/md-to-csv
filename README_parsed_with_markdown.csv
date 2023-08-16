@@ -15,6 +15,7 @@ Markdown to CSV Converter,Usage,,,,,"options:
                         Markdown parser to use
   -v, --verbose         Increase output verbosity
 ```"
+Markdown to CSV Converter,Usage,,,,,Note: Make sure to have the required dependencies installed for the chosen parser. Refer to the requirements.txt file.
 Markdown to CSV Converter,Usage,Basic usage,,,,This command will convert the README.md file to a CSV file using the default pypandoc parser.
 Markdown to CSV Converter,Usage,Basic usage,,,,"shell
 python3 main.py README.md"
@@ -31,9 +32,7 @@ Markdown to CSV Converter,Usage,Specifying the Markdown parser,,,,```shell
 Using the markdown parser,,,,,,python main.py input.md --parser markdown
 Or using the pypandoc parser (default),,,,,,"python main.py input.md --parser pypandoc
 ```"
-Or using the pypandoc parser (default),,,,,,Note: Make sure to have the required dependencies installed for the chosen parser. Refer to the requirements.txt file.
 Or using the pypandoc parser (default),,Using verbose logging,,,,Add the -v flag to enable verbose logging.
 Or using the pypandoc parser (default),,Using verbose logging,,,,"shell
 python3 main.py input.md -v"
-Want to contribute?,,,,,,Feel free to open an issue or pull request if you find a bug or have suggestions for improvements.
-Want to contribute?,,,,,,Submit a PR :)
+Want to contribute?,,,,,,Feel free to open an issue or submit a pull request if you find a bug or have suggestions for improvements.
