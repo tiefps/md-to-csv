@@ -59,10 +59,10 @@ Example usage:
 
 ```shell
 # Using the markdown parser
-python main.py input.md --parser markdown
+python3 main.py input.md --parser markdown
 
 # Or using the pypandoc parser (default)
-python main.py input.md --parser pypandoc
+python3 main.py input.md --parser pypandoc
 ```
 
 ### Using verbose logging

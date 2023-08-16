@@ -29,8 +29,8 @@ Pypandoc Parser (pypandoc): A more extensive parser using the pypandoc library, 
 "
 Markdown to CSV Converter,Usage,Specifying the Markdown parser,,,,Example usage:
 Markdown to CSV Converter,Usage,Specifying the Markdown parser,,,,```shell
-Using the markdown parser,,,,,,python main.py input.md --parser markdown
-Or using the pypandoc parser (default),,,,,,"python main.py input.md --parser pypandoc
+Using the markdown parser,,,,,,python3 main.py input.md --parser markdown
+Or using the pypandoc parser (default),,,,,,"python3 main.py input.md --parser pypandoc
 ```"
 Or using the pypandoc parser (default),,Using verbose logging,,,,Add the -v flag to enable verbose logging.
 Or using the pypandoc parser (default),,Using verbose logging,,,,"shell

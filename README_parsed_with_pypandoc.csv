@@ -37,10 +37,10 @@ Markdown to CSV Converter,Usage,"Specifying the Markdown
 parser",,,,Example usage:
 Markdown to CSV Converter,Usage,"Specifying the Markdown
 parser",,,,"# Using the markdown parser
-python main.py input.md --parser markdown
+python3 main.py input.md --parser markdown
 
 # Or using the pypandoc parser (default)
-python main.py input.md --parser pypandoc"
+python3 main.py input.md --parser pypandoc"
 Markdown to CSV Converter,Usage,Using verbose logging,,,,Add the -v flag to enable verbose logging.
 Markdown to CSV Converter,Usage,Using verbose logging,,,,python3 main.py input.md -v
 Want to contribute?,,,,,,"Feel free to open an issue or
