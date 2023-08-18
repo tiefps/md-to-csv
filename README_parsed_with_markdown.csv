@@ -1,8 +1,11 @@
 h1,h2,h3,h4,h5,h6,content
-Markdown to CSV Converter,,,,,,Converts a basic Markdown file into a CSV file.
-Markdown to CSV Converter,Set up,Install dependencies:,,,,"shell
+Markdown to CSV Converter,,,,,,Markdown to CSV Converter is a command-line tool that facilitates the conversion of Markdown documents into CSV files.
+Markdown to CSV Converter,Prerequisites,,,,,Ensure that you have Python 3.x installed on your system.
+Markdown to CSV Converter,Installation,Install dependencies,,,,"Run the following command to install the required dependencies:
+shell
 pip3 install -r requirements.txt"
-Markdown to CSV Converter,Usage,,,,,"```
+Markdown to CSV Converter,Usage,,,,,"Convert Markdown files to CSV with ease and customization using the following options:
+```
 usage: main.py [-h] [-o OUTPUT] [-p {markdown,pypandoc}] [-v] input
 Convert Markdown file to CSV.
 positional arguments:
@@ -10,29 +13,30 @@ positional arguments:
 options:
   -h, --help            show this help message and exit
   -o OUTPUT, --output OUTPUT
-                        Name of output file
+                        Name of output file, if unset it converts file.md to out-.csv
   -p {markdown,pypandoc}, --parser {markdown,pypandoc}
                         Markdown parser to use
   -v, --verbose         Increase output verbosity
-```
-Note: Make sure to have the required dependencies installed for the chosen parser. Refer to the requirements.txt file."
-Markdown to CSV Converter,Usage,Basic usage,,,,"This command will convert the README.md file to a CSV file using the default pypandoc parser.
+```"
+Markdown to CSV Converter,Usage,Examples,Basic usage,,,"Convert README.md to a CSV file using the default pypandoc parser:
 shell
 python3 main.py README.md"
-Markdown to CSV Converter,Usage,Specifying the output file,,,,"This will save the converted CSV file as output.csv.
+Markdown to CSV Converter,Usage,Examples,Specifying the output file,,,"Save the converted CSV file as output.csv:
 shell
 python3 main.py input.md -o output.csv"
-Markdown to CSV Converter,Usage,Specifying the Markdown parser,,,,"You can choose between two parser options:
+Markdown to CSV Converter,Usage,Examples,Specifying the Markdown Parser,,,"You can choose between two parser options:
 
-Markdown Parser (markdown): A lightweight parser using the Python markdown library. Suitable for simple conversions. Sample Output
-Pypandoc Parser (pypandoc): A more extensive parser using the pypandoc library, which wraps Pandoc. Suitable for complex Markdown files. Sample Output
+Markdown Parser (markdown): Utilizes the Python markdown library. Sample Output
+Pypandoc Parser (pypandoc): Utilizes the pypandoc library, which wraps Pandoc. Sample Output
 
+The choice of parser may vary depending on the specific structure and content of the Markdown file you are converting.
+We recommend trying both options and choosing the one that provides the best results for your particular document.
 Example usage:
 ```shell"
 Using the markdown parser,,,,,,python3 main.py input.md --parser markdown
 Or using the pypandoc parser (default),,,,,,"python3 main.py input.md --parser pypandoc
 ```"
-Or using the pypandoc parser (default),,Using verbose logging,,,,"Add the -v flag to enable verbose logging.
+Or using the pypandoc parser (default),,,Using verbose logging,,,"Enable verbose logging with the -v flag:
 shell
 python3 main.py input.md -v"
-Want to contribute?,,,,,,Feel free to open an issue or submit a pull request if you find a bug or have suggestions for improvements.
+Or using the pypandoc parser (default),Contributing,,,,,Found a bug or have suggestions for improvements? Feel free to open an issueor submit a pull request.
