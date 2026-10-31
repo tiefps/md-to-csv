@@ -1,4 +1,4 @@
-setuptools==83.0.0
+setuptools==84.1.0
 pypandoc~=1.11
 beautifulsoup4==4.12.2
 markdown==3.8.1
